@@ -1,0 +1,33 @@
+.header {
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 20px;
+        a {
+            font-weight: bold;
+            color: $secondary;
+            &.router-link-exact-active {
+                color: $primary;
+            }
+        }
+        &__item {
+            text-decoration: none;
+            margin-right: 0.5rem;
+            &:hover {
+                text-decoration: underline;
+            }
+            i {
+                margin-right: 5px;
+            }
+        }
+        &__logo {
+            display: flex;
+            align-items: center;
+            img {
+                max-width: 100%;
+                width: 200px;
+            }
+        }
+    }
+}

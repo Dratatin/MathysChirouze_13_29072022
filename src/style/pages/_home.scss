@@ -1,0 +1,7 @@
+.features {
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: 920px) {
+        flex-direction: row;
+  }
+}
