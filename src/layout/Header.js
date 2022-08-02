@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import logo from '../assets/logo.svg';
 
 function Header() {
+    const isAuthenticated = true
     return (
         <header className="header">
             <nav className="header__nav">
@@ -12,14 +13,23 @@ function Header() {
                     />
                     <h1 className="sr-only" > Argent Bank</h1>
                 </NavLink>
-                <div>
-                    <NavLink className="header__nav__item" to="./sign-in.html">
-                        <i className="fa fa-user-circle"></i>
-                        Sign In
-                    </NavLink>
-                </div>
+                {isAuthenticated ? (
+                    <div>
+                        <NavLink className="header__nav__item" to="./sign-in">
+                            <i className="fa fa-user-circle"></i>
+                            Sign In
+                        </NavLink>
+                    </div>
+                ) : (
+                    < div >
+                        <NavLink className="header__nav__item" to="./sign-in">
+                            <i className="fa fa-user-circle"></i>
+                            Sign In
+                        </NavLink>
+                    </div>
+                )}
             </nav>
-        </header>
+        </header >
     )
 }
 

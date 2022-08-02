@@ -11,12 +11,17 @@
 //layout
 @import 'layout/header';
 @import 'layout/footer';
+@import 'layout/main';
 
 //components
 @import 'components/hero';
 @import 'components/featureItem';
+@import 'components/accountWrapper';
+@import 'components/button';
 
 //pages
 @import 'pages/home';
+@import 'pages/signIn';
+@import 'pages/user'
 
 //themes

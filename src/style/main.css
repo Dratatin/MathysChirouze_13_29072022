@@ -4,6 +4,9 @@ body {
   padding: 0;
   color: #2c3e50;
   text-align: center;
+}
+
+#root {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11,7 +14,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 a {
@@ -95,6 +98,13 @@ body {
   padding: 0;
 }
 
+.main--bgdark {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background-color: #12002b;
+}
+
 .hero {
   background-position: 0 -50px;
   background-size: cover;
@@ -175,6 +185,85 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid black;
+  background-color: #fff;
+  width: 80%;
+  margin: 0 auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1.5rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+@media screen and (min-width: 720px) {
+  .account {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+.account__wrapper {
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.account__wrapper__amount {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.account__wrapper__description {
+  margin: 0;
+}
+.account__wrapper__title {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: normal;
+}
+@media screen and (min-width: 720px) {
+  .account__wrapper--cta {
+    -webkit-box-flex: 0;
+        -ms-flex: 0;
+            flex: 0;
+  }
+}
+.account__wrapper--cta button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+@media screen and (min-width: 720px) {
+  .account__wrapper--cta button {
+    width: 200px;
+  }
+}
+
+.button {
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  font-weight: bold;
+}
+
 .features {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -191,4 +280,62 @@ body {
         -ms-flex-direction: row;
             flex-direction: row;
   }
+}
+
+.signIn-content {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
+}
+.signIn-content__button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+}
+.signIn-content__icon {
+  font-size: 5rem;
+}
+.signIn-content__form .input-remember {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.signIn-content__form .input-remember label {
+  margin-left: 0.25rem;
+}
+.signIn-content__form .input-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+.signIn-content__form .input-wrapper label {
+  font-weight: bold;
+}
+.signIn-content__form .input-wrapper input {
+  padding: 5px;
+  font-size: 1.2rem;
+}
+
+.main__header {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+.main__header button {
+  padding: 10px;
 }/*# sourceMappingURL=main.css.map */

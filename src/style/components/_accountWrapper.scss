@@ -1,0 +1,50 @@
+.account {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    background-color: #fff;
+    width: 80%;
+    margin: 0 auto;
+    flex-direction: column;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    text-align: left;
+    margin-bottom: 2rem;
+    @media screen and (min-width: 720px) {
+        flex-direction: row;
+    }
+    &__wrapper {
+        width: 100%;
+        flex: 1;
+        &__amount {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        &__description {
+            margin: 0;
+        }
+        &__title {
+            margin: 0;
+            padding: 0;
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        &--cta {
+            @media screen and (min-width: 720px) {
+                flex: 0;
+            }
+            button {
+                display: block;
+                width: 100%;
+                padding: 8px;
+                margin-top: 1rem;
+                font-size: 1.1rem;
+                @media screen and (min-width: 720px) {
+                    width: 200px;
+                }
+            }
+        }
+    }
+}

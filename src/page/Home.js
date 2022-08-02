@@ -3,11 +3,10 @@ import FeatureItem from "../components/FeatureItem"
 import chat from "../assets/icon-chat.png"
 import money from "../assets/icon-money.png"
 import security from "../assets/icon-security.png"
-import { Fragment } from "react"
 
 function Home() {
   return (
-    <Fragment>
+    <main className="main">
       <Hero />
       <section className="features">
         <FeatureItem
@@ -26,7 +25,7 @@ function Home() {
           description="We use top of the line encryption to make sure your data and money is always safe."
         />
       </section>
-    </Fragment>
+    </main>
   )
 }
 
