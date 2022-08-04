@@ -1,6 +1,10 @@
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { LoginContext } from '../utils/context'
+import { useContext } from 'react'
 
 function SignIn() {
+    const { setIsLogged } = useContext(LoginContext)
+
     return (
         <main className="main main--bgdark">
             <section className="signIn-content">
@@ -20,7 +24,7 @@ function SignIn() {
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
                     {/* PLACEHOLDER DUE TO STATIC SITE */}
-                    <NavLink to="/user" className="signIn-content__button">Sign In</NavLink>
+                    <Link onClick={() => setIsLogged(true)} to="/user" className="signIn-content__button">Sign In</Link>
                     {/*SHOULD BE THE BUTTON BELOW
                     <button className="sign-in-button">Sign In</button>
                     */}

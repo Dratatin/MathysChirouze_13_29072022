@@ -1,8 +1,8 @@
-function FeatureItem({ icon, title, description }) {
+function FeatureItem({ icon, alt, title, description }) {
     return (
-        <div class="feature-item">
-            <img src={icon} alt="Chat Icon" class="feature-item__icon" />
-            <h3 class="feature-item__title">{title}</h3>
+        <div className="feature-item">
+            <img src={icon} alt={alt} className="feature-item__icon" />
+            <h3 className="feature-item__title">{title}</h3>
             <p>{description}</p>
         </div>
     )
