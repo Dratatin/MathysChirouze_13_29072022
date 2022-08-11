@@ -1,49 +1,24 @@
-import { Link, Navigate } from 'react-router-dom'
-import { LoginContext } from '../utils/context'
-import { useContext, useEffect, useState } from 'react'
-import submitForm from '../services/api'
-import axios from "axios"
+import { Navigate } from 'react-router-dom'
+import { useStore, useSelector } from "react-redux/es/exports"
+import { connectionRequest } from '../utils/action'
 
 function SignIn() {
-    const { logged, setIsLogged } = useContext(LoginContext)
-
-    const [tokken, setTokken] = useState()
-    const [status, setStatus] = useState()
-    const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState()
+    const store = useStore()
+    const logged = useSelector(state => state.isAuthenticate)
+    const error = useSelector(state => state.error)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const login = {
+        const logCredential = {
             email: document.querySelector("#username").value,
-            password: document.querySelector("#password").value
+            password: document.querySelector("#password").value,
+            rememberMe: document.querySelector("#remember-me").checked
         }
-        submitForm(login)
+        connectionRequest(store, logCredential)
     }
-
-    const submitForm = (loggin) => {
-        axios.post('http://localhost:3001/api/v1/user/login', {
-            email: loggin.email,
-            password: loggin.password
-        }).then(res => {
-            setStatus(res.data.status)
-            setTokken(res.data.body.tokken)
-            setIsLoading(false)
-        }).catch(error => {
-            setError(error);
-        })
-    }
-
-    useEffect(() => {
-        if (status === 200) {
-            setIsLogged(true)
-        }
-    })
 
     if (logged) {
-        return (
-            <Navigate to="/user" />
-        )
+        return (<Navigate to="/user" />)
     }
     else {
         return (
@@ -51,6 +26,13 @@ function SignIn() {
                 <section className="signIn-content">
                     <i className="fa fa-user-circle signIn-content__icon"></i>
                     <h1>Sign In</h1>
+                    {error.status === 400 ?
+                        <span>Mauvais identifiant ou mot de passe</span>
+                        : (error.status !== null && error.status !== 400 ?
+                            <span>Une erreur est survenue : {error.message}</span>
+                            : null
+                        )
+                    }
                     <form onSubmit={handleSubmit} className="signIn-content__form">
                         <div className="input-wrapper">
                             <label htmlFor="username">Username</label>
@@ -69,7 +51,6 @@ function SignIn() {
                         {/*SHOULD BE THE BUTTON BELOW                       */}
                         <button className="signIn-content__button">Sign In</button>
                     </form>
-                    {error ? <span>Mauvais Identifiant ou mot de passe</span> : null}
                 </section>
             </main >
         )

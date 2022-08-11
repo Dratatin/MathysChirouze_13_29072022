@@ -1,10 +1,17 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.svg'
-import { LoginContext } from '../utils/context'
-import { useContext } from 'react'
+import { logout } from '../utils/authReducer'
+import { useDispatch, useSelector } from "react-redux/es/exports"
 
 function Header() {
-    const { logged, setIsLogged } = useContext(LoginContext)
+    const logged = useSelector(state => state.isAuthenticate)
+    const dispatch = useDispatch()
+
+    const handleLogout = (e) => {
+        e.preventDefault()
+        dispatch(logout())
+    }
+
     return (
         <header className="header">
             <nav className="header__nav">
@@ -28,7 +35,7 @@ function Header() {
                             <i className="fa fa-user-circle"></i>
                             Tony
                         </Link>
-                        <Link onClick={() => setIsLogged(false)} className="header__nav__item" to="./">
+                        <Link onClick={handleLogout} className="header__nav__item" to="./">
                             <i className="fa fa-sign-out"></i>
                             Sign Out
                         </Link>

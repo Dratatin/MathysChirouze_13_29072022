@@ -1,0 +1,22 @@
+.loader {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    border: 6px solid $primary;
+    border-bottom-color: transparent;
+    border-radius: 22px;
+    animation: 1s rotate infinite linear;
+    height: 0;
+    width: 0;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
