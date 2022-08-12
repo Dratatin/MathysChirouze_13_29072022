@@ -5,6 +5,9 @@
     margin: 0 auto;
     margin-top: 3rem;
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     &__button {
         display: block;
         width: 100%;
@@ -43,5 +46,8 @@
             padding: 5px;
             font-size: 1.2rem;
         }
+    }
+    &__error-message {
+        color: red;
     }
 }

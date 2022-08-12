@@ -21,6 +21,12 @@ a {
   text-decoration: none;
 }
 
+button {
+  border: 0;
+  padding: 0;
+  background-color: unset;
+}
+
 .sr-only {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
@@ -174,6 +180,7 @@ body {
 }
 .feature-item__icon {
   width: 100px;
+  height: 100px;
   border: 10px solid #00bc77;
   border-radius: 50%;
   padding: 1rem;
@@ -267,10 +274,10 @@ body {
 .loader {
   position: absolute;
   top: 40%;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-          transform: translateX(-50%);
+  right: 50%;
+  -webkit-transform: translate(50%, -50%);
+      -ms-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
   padding: 10px;
   border: 6px solid #42b983;
   border-bottom-color: transparent;
@@ -283,23 +290,23 @@ body {
 
 @-webkit-keyframes rotate {
   from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    -webkit-transform: translate(50%, -50%) rotate(0deg);
+            transform: translate(50%, -50%) rotate(0deg);
   }
   to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    -webkit-transform: translate(50%, -50%) rotate(360deg);
+            transform: translate(50%, -50%) rotate(360deg);
   }
 }
 
 @keyframes rotate {
   from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    -webkit-transform: translate(50%, -50%) rotate(0deg);
+            transform: translate(50%, -50%) rotate(0deg);
   }
   to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    -webkit-transform: translate(50%, -50%) rotate(360deg);
+            transform: translate(50%, -50%) rotate(360deg);
   }
 }
 .features {
@@ -328,6 +335,16 @@ body {
   margin: 0 auto;
   margin-top: 3rem;
   padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .signIn-content__button {
   display: block;
@@ -368,6 +385,9 @@ body {
 .signIn-content__form .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
+}
+.signIn-content__error-message {
+  color: red;
 }
 
 .main__header {
