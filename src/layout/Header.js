@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.svg'
-import { logout } from '../utils/authReducer'
 import { useDispatch, useSelector } from "react-redux/es/exports"
+import { logout } from '../utils/root.action'
 
 function Header() {
-    const logged = useSelector(state => state.isAuthenticate)
+    const logged = useSelector(state => state.auth.isAuthenticate)
     const dispatch = useDispatch()
 
     const handleLogout = (e) => {

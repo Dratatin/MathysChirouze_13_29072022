@@ -1,10 +1,20 @@
 import AccountWrapper from "../components/AccountWrapper"
 import Button from "../components/Button"
-import { useSelector } from "react-redux/es/exports"
+import { useSelector, useStore } from "react-redux"
 import { Navigate } from 'react-router-dom'
+import { useEffect } from "react"
+import { getUserProfil } from "../services/API"
 
 function User() {
-    const logged = useSelector(state => state.isAuthenticate)
+    const store = useStore()
+    const logged = useSelector(state => state.auth.isAuthenticate)
+    const token = useSelector(state => state.auth.token)
+
+    useEffect(() => {
+        if (token !== undefined) {
+            getUserProfil(store, token)
+        }
+    }, [])
 
     if (!logged) {
         return (<Navigate to="/" />)

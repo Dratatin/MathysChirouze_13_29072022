@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { postReducer } from "./authReducer";
+import { rootReducer } from "./root.reducer";
 
 export const store = configureStore({
-    reducer: postReducer
+    reducer: rootReducer
 })

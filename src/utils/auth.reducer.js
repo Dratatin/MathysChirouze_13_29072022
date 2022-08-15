@@ -8,14 +8,9 @@ const initialState = {
     token: null
 }
 
-export const login = () => ({ type: "login" })
-export const logout = () => ({ type: "logout" })
-export const postResolved = (token) => ({ type: "resolved", payload: token })
-export const postRejected = (error) => ({ type: "rejected", payload: error })
-
-export function postReducer(state = initialState, action) {
+export function authReducer(state = initialState, action) {
     switch (action.type) {
-        case "login":
+        case "auth/login":
             if (state.status === "void") {
                 return {
                     ...state,
@@ -34,7 +29,7 @@ export function postReducer(state = initialState, action) {
                 }
             }
             break
-        case "resolved":
+        case "auth/resolved":
             if (state.status === "pending") {
                 return {
                     ...state,
@@ -44,7 +39,7 @@ export function postReducer(state = initialState, action) {
                 }
             }
             break
-        case "rejected":
+        case "auth/rejected":
             if (state.status === "pending") {
                 return {
                     ...state,
@@ -55,21 +50,6 @@ export function postReducer(state = initialState, action) {
                         status: action.payload.status
                     },
                     isAuthenticate: false
-                }
-            }
-            break
-        case "logout":
-            if (state.isAuthenticate === true) {
-                return {
-                    ...state,
-                    status: "void",
-                    error: {
-                        ...state.error,
-                        message: null,
-                        status: null
-                    },
-                    isAuthenticate: false,
-                    token: null
                 }
             }
             break

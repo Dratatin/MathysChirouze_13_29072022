@@ -1,14 +1,14 @@
 import { Navigate } from 'react-router-dom'
-import { useStore, useSelector } from "react-redux/es/exports"
-import { connectionRequest } from '../utils/action'
+import { useStore, useSelector } from "react-redux"
+import { postSignIn } from '../services/API'
 import Loader from '../components/Loader'
 import { useEffect, useState } from 'react'
 
 function SignIn() {
     const store = useStore()
-    const logged = useSelector(state => state.isAuthenticate)
-    const error = useSelector(state => state.error)
-    const status = useSelector(state => state.status)
+    const logged = useSelector(state => state.auth.isAuthenticate)
+    const error = useSelector(state => state.auth.error)
+    const status = useSelector(state => state.auth.status)
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
@@ -25,12 +25,14 @@ function SignIn() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const logCredential = {
-            email: document.querySelector("#username").value,
-            password: document.querySelector("#password").value,
-            rememberMe: document.querySelector("#remember-me").checked
+        const logCredentials = {
+            email: "steve@rogers.com",
+            password: "password456"
+            // email: document.querySelector("#username").value,
+            // password: document.querySelector("#password").value,
+            // rememberMe: document.querySelector("#remember-me").checked
         }
-        connectionRequest(store, logCredential)
+        postSignIn(store, logCredentials)
     }
 
     if (logged) {
