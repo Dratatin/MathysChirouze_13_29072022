@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux/es/exports"
 import { logout } from '../utils/root.action'
 
 function Header() {
-    const logged = useSelector(state => state.auth.isAuthenticate)
+    const logged = useSelector(state => state.isAuthenticate)
+    const user = useSelector(state => state.user)
     const dispatch = useDispatch()
 
     const handleLogout = (e) => {
@@ -33,7 +34,7 @@ function Header() {
                     <div>
                         <Link className="header__nav__item" to="./user">
                             <i className="fa fa-user-circle"></i>
-                            Tony
+                            {user.firstName}
                         </Link>
                         <Link onClick={handleLogout} className="header__nav__item" to="./">
                             <i className="fa fa-sign-out"></i>

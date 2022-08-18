@@ -1,34 +1,51 @@
 import axios from "axios"
+import { post, getToken, authResolved, authRejected } from "../utils/authentification/auth.action"
 
-import { login, authResolved, authRejected } from "../utils/auth.action"
-import { logged, userResolved, userRejected } from "../utils/user.action"
+const BASE_URL = 'http://localhost:3001/api/v1/user/'
 
-export const postSignIn = ((store, logCredential) => {
-    store.dispatch(login())
-    axios.post('http://localhost:3001/api/v1/user/login', {
+export const authentification = (store, logCredential) => {
+    store.dispatch(post())
+    axios.post(`${BASE_URL}login`, {
         email: logCredential.email,
         password: logCredential.password
     }).then(response => {
-        store.dispatch(authResolved(response.data.body.token))
+        store.dispatch(getToken(response.data.body.token))
+        getUserProfil(store)
     }).catch(error => {
         store.dispatch(authRejected({
             message: error.message,
             status: error.response.status
         }))
     })
-})
+}
 
-export const getUserProfil = ((store, token) => {
-    store.dispatch(logged())
-    axios.post('http://localhost:3001/api/v1/user/profile', {}, {
+const getUserProfil = (store) => {
+    const token = store.getState().token
+    axios.post(`${BASE_URL}profile`, {}, {
         headers: { 'Authorization': `Bearer ${token}` }
     }).then(response => {
-        store.dispatch(userResolved(response.data.body))
+        store.dispatch(authResolved(response.data.body))
     }).catch(error => {
-        store.dispatch(userRejected({
+        store.dispatch(authRejected({
             message: error.message,
             status: error.response.status
         }))
     })
-})
+}
 
+export const editUserProfil = (store, token, userInfo) => {
+    store.dispatch(post())
+    axios.put(`${BASE_URL}profile`, {
+        firstName: userInfo.firstName,
+        lastName: userInfo.lastName
+    }, {
+        headers: { 'Authorization': `Bearer ${token}` }
+    }).then(response => {
+        store.dispatch(authResolved(response.data.body))
+    }).catch(error => {
+        store.dispatch(authRejected({
+            message: error.message,
+            status: error.response.status
+        }))
+    })
+}

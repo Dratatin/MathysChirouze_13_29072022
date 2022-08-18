@@ -1,6 +1,19 @@
-function Button({ content }) {
+import { Fragment } from "react"
+
+function Button({ content, state, setState }) {
+    const handleClick = (e) => {
+        e.preventDefault()
+        setState(!state)
+    }
+
     return (
-        <button className="button">{content}</button>
+        <Fragment>
+            {setState ?
+                <button onClick={handleClick} className="button">{content}</button>
+                :
+                <button className="button">{content}</button>
+            }
+        </Fragment>
     )
 }
 

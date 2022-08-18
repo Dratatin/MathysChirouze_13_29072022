@@ -4,17 +4,22 @@ const initialState = {
         message: null,
         status: null
     },
+    token: null,
     isAuthenticate: false,
-    token: null
+    user: {
+        id: null,
+        firstName: null,
+        lastName: null
+    },
 }
 
 export function authReducer(state = initialState, action) {
     switch (action.type) {
-        case "auth/login":
+        case "auth/post":
             if (state.status === "void") {
                 return {
                     ...state,
-                    status: "pending",
+                    status: "pending"
                 }
             }
             if (state.status === "rejected") {
@@ -28,19 +33,30 @@ export function authReducer(state = initialState, action) {
                     status: "pending"
                 }
             }
+            if (state.status === "resolved") {
+                return {
+                    ...state,
+                    status: "updating"
+                }
+            }
             break
         case "auth/resolved":
-            if (state.status === "pending") {
+            if (state.status === "pending" || state.status === "updating") {
                 return {
                     ...state,
                     status: "resolved",
                     isAuthenticate: true,
-                    token: action.payload
+                    user: {
+                        ...state.user,
+                        id: action.payload.id,
+                        firstName: action.payload.firstName,
+                        lastName: action.payload.lastName
+                    }
                 }
             }
             break
         case "auth/rejected":
-            if (state.status === "pending") {
+            if (state.status === "pending" || state.status === "updating") {
                 return {
                     ...state,
                     status: "rejected",
@@ -53,6 +69,15 @@ export function authReducer(state = initialState, action) {
                 }
             }
             break
+        case "auth/token": {
+            if (state.status === "pending") {
+                return {
+                    ...state,
+                    token: action.payload,
+                }
+            }
+            break
+        }
         default:
             return state
     }

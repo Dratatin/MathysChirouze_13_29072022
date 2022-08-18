@@ -1,0 +1,32 @@
+.renameForm {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    &__error-msg {
+        margin-bottom: 1em;
+        color: red;
+    }
+    &__column {
+        display: flex;
+        justify-content: center;
+        &__wrapper {
+            display: flex;
+            flex: 1;
+            justify-content: flex-start;
+            margin: 0.3em;
+            &--end {
+                justify-content: flex-end;
+            }
+            &--start {
+                justify-content: flex-start;
+            }
+            input {
+                padding: 5px;
+                &[type=text] {
+                    width: 200px;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}

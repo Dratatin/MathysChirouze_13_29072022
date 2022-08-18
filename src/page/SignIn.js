@@ -1,14 +1,14 @@
 import { Navigate } from 'react-router-dom'
 import { useStore, useSelector } from "react-redux"
-import { postSignIn } from '../services/API'
 import Loader from '../components/Loader'
 import { useEffect, useState } from 'react'
+import { authentification } from '../services/API'
 
 function SignIn() {
     const store = useStore()
-    const logged = useSelector(state => state.auth.isAuthenticate)
-    const error = useSelector(state => state.auth.error)
-    const status = useSelector(state => state.auth.status)
+    const logged = useSelector(state => state.isAuthenticate)
+    const error = useSelector(state => state.error)
+    const status = useSelector(state => state.status)
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
@@ -18,7 +18,7 @@ function SignIn() {
         if (status === "rejected") {
             const timer = setTimeout(() => {
                 setIsLoading(false)
-            }, 1000);
+            }, 500);
             return () => clearTimeout(timer);
         }
     }, [status]);
@@ -32,11 +32,11 @@ function SignIn() {
             // password: document.querySelector("#password").value,
             // rememberMe: document.querySelector("#remember-me").checked
         }
-        postSignIn(store, logCredentials)
+        authentification(store, logCredentials)
     }
 
     if (logged) {
-        return (<Navigate to="/user" />)
+        return (<Navigate to="/profile" />)
     }
     else {
         return (
@@ -70,7 +70,7 @@ function SignIn() {
                             {/* PLACEHOLDER DUE TO STATIC SITE */}
                             {/* <Link onClick={() => setIsLogged(true)} to="/user" className="signIn-content__button">Sign In</Link> */}
                             {/*SHOULD BE THE BUTTON BELOW                       */}
-                            <button className="signIn-content__button">Sign In</button>
+                            <input type="submit" value="Sign In" className="signIn-content__button"></input>
                         </form>
                     </section>
                 }

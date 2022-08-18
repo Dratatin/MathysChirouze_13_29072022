@@ -22,7 +22,6 @@ a {
 }
 
 button {
-  border: 0;
   padding: 0;
   background-color: unset;
 }
@@ -269,11 +268,12 @@ body {
   background-color: #00bc77;
   color: #fff;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .loader {
   position: absolute;
-  top: 40%;
+  top: 50%;
   right: 50%;
   -webkit-transform: translate(50%, -50%);
       -ms-transform: translate(50%, -50%);
@@ -309,6 +309,60 @@ body {
             transform: translate(50%, -50%) rotate(360deg);
   }
 }
+.renameForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.renameForm__error-msg {
+  margin-bottom: 1em;
+  color: red;
+}
+.renameForm__column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.renameForm__column__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin: 0.3em;
+}
+.renameForm__column__wrapper--end {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+.renameForm__column__wrapper--start {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+.renameForm__column__wrapper input {
+  padding: 5px;
+}
+.renameForm__column__wrapper input[type=text] {
+  width: 200px;
+  font-size: 1.2rem;
+}
+
 .features {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -393,6 +447,8 @@ body {
 .main__header {
   color: #fff;
   margin-bottom: 2rem;
+  position: relative;
+  min-height: 100px;
 }
 .main__header button {
   padding: 10px;
