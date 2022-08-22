@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useStore, useSelector } from "react-redux"
 import { editUserProfil } from "../services/API"
 
-function RenameForm({ state, setState, username, setUsername }) {
+function RenameForm({ formOpen, setFormOpen, username, setUsername }) {
     const store = useStore()
     const token = useSelector(state => state.token)
     const user = useSelector(state => state.user)
@@ -59,7 +59,7 @@ function RenameForm({ state, setState, username, setUsername }) {
                 firstName: "",
                 lastName: ""
             })
-            setState(!state)
+            setFormOpen(!formOpen)
         }
         else {
             setValidInput({
@@ -75,21 +75,13 @@ function RenameForm({ state, setState, username, setUsername }) {
             firstName: "",
             lastName: ""
         })
-        setState(!state)
+        setFormOpen(!formOpen)
     }
 
     return (
         <form className="renameForm">
-            {/* {validInput.type === false ?
-                <div className="renameForm__error-msg">Veuillez saisir des caractères compris entre a et z.</div>
-                : null
-            }
-            {validInput.valid === false ?
-                <div className="renameForm__error-msg">Veuillez saisir au moins 2 caractères dans chaque champs.</div>
-                : null
-            } */}
             {validInput.invalidmsg !== null ?
-                <div className="renameForm__error-msg">{validInput.invalidmsg}</div>
+                <div className="error-msg">{validInput.invalidmsg}</div>
                 : null
             }
             <div className="renameForm__column">

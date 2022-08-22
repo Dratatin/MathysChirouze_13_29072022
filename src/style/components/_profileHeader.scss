@@ -1,0 +1,13 @@
+.profile-header {
+    color: #fff;
+    margin-bottom: 2rem;
+    position: relative;
+    min-height: 100px;
+    button {
+        padding: 10px;
+    }
+    .error-msg {
+        display: block;
+        margin-bottom: 1em;
+    }
+}

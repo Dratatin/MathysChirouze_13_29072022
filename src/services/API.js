@@ -1,5 +1,6 @@
 import axios from "axios"
 import { post, getToken, authResolved, authRejected } from "../utils/authentification/auth.action"
+import { saveTokenInLocalStorage } from "../utils/authentification/auth.action"
 
 const BASE_URL = 'http://localhost:3001/api/v1/user/'
 
@@ -10,7 +11,7 @@ export const authentification = (store, logCredential) => {
         password: logCredential.password
     }).then(response => {
         store.dispatch(getToken(response.data.body.token))
-        getUserProfil(store)
+        getUserProfil(store, logCredential.rememberMe)
     }).catch(error => {
         store.dispatch(authRejected({
             message: error.message,
@@ -19,12 +20,17 @@ export const authentification = (store, logCredential) => {
     })
 }
 
-const getUserProfil = (store) => {
+export const getUserProfil = (store, rememberMe) => {
     const token = store.getState().token
     axios.post(`${BASE_URL}profile`, {}, {
         headers: { 'Authorization': `Bearer ${token}` }
     }).then(response => {
         store.dispatch(authResolved(response.data.body))
+        if (rememberMe === true) {
+            saveTokenInLocalStorage(response.data.body.token)
+            localStorage.setItem('token', JSON.stringify(token))
+            localStorage.setItem('isAuthenticate', JSON.stringify(true))
+        }
     }).catch(error => {
         store.dispatch(authRejected({
             message: error.message,

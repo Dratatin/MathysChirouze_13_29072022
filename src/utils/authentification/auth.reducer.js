@@ -70,13 +70,10 @@ export function authReducer(state = initialState, action) {
             }
             break
         case "auth/token": {
-            if (state.status === "pending") {
-                return {
-                    ...state,
-                    token: action.payload,
-                }
+            return {
+                ...state,
+                token: action.payload,
             }
-            break
         }
         default:
             return state

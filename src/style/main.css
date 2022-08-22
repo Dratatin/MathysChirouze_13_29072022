@@ -26,6 +26,10 @@ button {
   background-color: unset;
 }
 
+.error-msg {
+  color: red;
+}
+
 .sr-only {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
@@ -321,9 +325,8 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.renameForm__error-msg {
+.renameForm .error-msg {
   margin-bottom: 1em;
-  color: red;
 }
 .renameForm__column {
   display: -webkit-box;
@@ -361,6 +364,20 @@ body {
 .renameForm__column__wrapper input[type=text] {
   width: 200px;
   font-size: 1.2rem;
+}
+
+.profile-header {
+  color: #fff;
+  margin-bottom: 2rem;
+  position: relative;
+  min-height: 100px;
+}
+.profile-header button {
+  padding: 10px;
+}
+.profile-header .error-msg {
+  display: block;
+  margin-bottom: 1em;
 }
 
 .features {
@@ -439,17 +456,4 @@ body {
 .signIn-content__form .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
-}
-.signIn-content__error-message {
-  color: red;
-}
-
-.main__header {
-  color: #fff;
-  margin-bottom: 2rem;
-  position: relative;
-  min-height: 100px;
-}
-.main__header button {
-  padding: 10px;
 }/*# sourceMappingURL=main.css.map */

@@ -2,15 +2,19 @@ import { Link } from 'react-router-dom'
 import logo from '../assets/logo.svg'
 import { useDispatch, useSelector } from "react-redux/es/exports"
 import { logout } from '../utils/root.action'
+import { useNavigate } from 'react-router-dom'
 
 function Header() {
     const logged = useSelector(state => state.isAuthenticate)
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleLogout = (e) => {
         e.preventDefault()
+        localStorage.clear()
         dispatch(logout())
+        navigate("/")
     }
 
     return (
@@ -32,7 +36,7 @@ function Header() {
                     </div>
                 ) : (
                     <div>
-                        <Link className="header__nav__item" to="./user">
+                        <Link className="header__nav__item" to="./profile">
                             <i className="fa fa-user-circle"></i>
                             {user.firstName}
                         </Link>

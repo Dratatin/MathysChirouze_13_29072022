@@ -2,9 +2,8 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    &__error-msg {
+    .error-msg {
         margin-bottom: 1em;
-        color: red;
     }
     &__column {
         display: flex;
