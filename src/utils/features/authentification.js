@@ -1,3 +1,5 @@
+import { createSlice } from "@reduxjs/toolkit"
+
 const initialState = {
     status: "void",
     error: {
@@ -13,9 +15,11 @@ const initialState = {
     },
 }
 
-export function authReducer(state = initialState, action) {
-    switch (action.type) {
-        case "auth/post":
+const authSlice = createSlice({
+    name: 'auth',
+    initialState,
+    reducers: {
+        post(state) {
             if (state.status === "void") {
                 return {
                     ...state,
@@ -39,8 +43,14 @@ export function authReducer(state = initialState, action) {
                     status: "updating"
                 }
             }
-            break
-        case "auth/resolved":
+        },
+        getToken(state, action) {
+            return {
+                ...state,
+                token: action.payload,
+            }
+        },
+        authResolved(state, action) {
             if (state.status === "pending" || state.status === "updating") {
                 return {
                     ...state,
@@ -54,8 +64,8 @@ export function authReducer(state = initialState, action) {
                     }
                 }
             }
-            break
-        case "auth/rejected":
+        },
+        authRejected(state, action) {
             if (state.status === "pending" || state.status === "updating") {
                 return {
                     ...state,
@@ -68,14 +78,9 @@ export function authReducer(state = initialState, action) {
                     isAuthenticate: false
                 }
             }
-            break
-        case "auth/token": {
-            return {
-                ...state,
-                token: action.payload,
-            }
         }
-        default:
-            return state
     }
-}
+})
+
+export const { post, getToken, authResolved, authRejected } = authSlice.actions
+export default authSlice.reducer

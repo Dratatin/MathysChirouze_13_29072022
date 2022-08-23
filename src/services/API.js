@@ -1,6 +1,5 @@
 import axios from "axios"
-import { post, getToken, authResolved, authRejected } from "../utils/authentification/auth.action"
-import { saveTokenInLocalStorage } from "../utils/authentification/auth.action"
+import { post, getToken, authResolved, authRejected } from "../utils/features/authentification"
 
 const BASE_URL = 'http://localhost:3001/api/v1/user/'
 
@@ -27,7 +26,6 @@ export const getUserProfil = (store, rememberMe) => {
     }).then(response => {
         store.dispatch(authResolved(response.data.body))
         if (rememberMe === true) {
-            saveTokenInLocalStorage(response.data.body.token)
             localStorage.setItem('token', JSON.stringify(token))
             localStorage.setItem('isAuthenticate', JSON.stringify(true))
         }

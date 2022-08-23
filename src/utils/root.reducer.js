@@ -1,4 +1,5 @@
-import { authReducer } from "./authentification/auth.reducer"
+import authReducer from "./features/authentification"
+import { createAction } from "@reduxjs/toolkit"
 // import { userReducer } from "./user.reducer"
 // import { combineReducers } from "redux"
 
@@ -6,6 +7,8 @@ import { authReducer } from "./authentification/auth.reducer"
 //     user: userReducer,
 //     auth: authReducer,
 // });
+
+export const logout = createAction("logout")
 
 export const rootReducer = (state, action) => {
     if (action.type === 'logout') { // check for action type 

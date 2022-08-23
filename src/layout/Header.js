@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.svg'
 import { useDispatch, useSelector } from "react-redux/es/exports"
-import { logout } from '../utils/root.action'
+import { logout } from '../utils/root.reducer'
 import { useNavigate } from 'react-router-dom'
 
 function Header() {
