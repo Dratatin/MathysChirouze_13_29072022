@@ -19,7 +19,7 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        post(state) {
+        authFetching(state) {
             if (state.status === "void") {
                 return {
                     ...state,
@@ -44,18 +44,25 @@ const authSlice = createSlice({
                 }
             }
         },
-        getToken(state, action) {
-            return {
-                ...state,
-                token: action.payload,
-            }
-        },
         authResolved(state, action) {
-            if (state.status === "pending" || state.status === "updating") {
+            if (state.status === "pending") {
                 return {
                     ...state,
                     status: "resolved",
                     isAuthenticate: true,
+                    token: action.payload.token,
+                    user: {
+                        ...state.user,
+                        id: action.payload.id,
+                        firstName: action.payload.firstName,
+                        lastName: action.payload.lastName
+                    }
+                }
+            }
+            if (state.status === "updating") {
+                return {
+                    ...state,
+                    status: "resolved",
                     user: {
                         ...state.user,
                         id: action.payload.id,
@@ -82,5 +89,5 @@ const authSlice = createSlice({
     }
 })
 
-export const { post, getToken, authResolved, authRejected } = authSlice.actions
+export const { authFetching, authResolved, authRejected } = authSlice.actions
 export default authSlice.reducer

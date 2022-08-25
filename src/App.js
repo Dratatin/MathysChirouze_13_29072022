@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './page/Home'
-import SignIn from './page/SignIn'
+import Login from './page/Login'
 import Profile from './page/Profile'
 import Header from './layout/Header'
 import Footer from './layout/Footer'
 import { useDispatch, useStore } from 'react-redux'
 import { useEffect } from 'react'
 import { getUserProfil } from './services/API'
-import { getToken, post } from './utils/features/authentification'
+import { authFetching } from './redux/features/authentification'
 
 function App() {
     const dispatch = useDispatch()
@@ -20,9 +20,8 @@ function App() {
                 return
             }
             const token = JSON.parse(tokenString)
-            dispatch(getToken(token))
-            dispatch(post())
-            getUserProfil(store)
+            dispatch(authFetching())
+            getUserProfil(store, token)
         }
 
         checkAutoLogin(store, dispatch)
@@ -33,7 +32,7 @@ function App() {
             <Header />
             <Routes>
                 <Route path='/' element={<Home />}></Route>
-                <Route path='/sign-in' element={<SignIn />}></Route>
+                <Route path='/login' element={<Login />}></Route>
                 <Route path='/profile' element={<Profile />}></Route>
             </Routes>
             <Footer />

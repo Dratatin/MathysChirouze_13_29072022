@@ -4,7 +4,7 @@ import Loader from '../components/Loader'
 import { useEffect, useState } from 'react'
 import { authentification } from '../services/API'
 
-function SignIn() {
+function Login() {
     const store = useStore()
     const logged = useSelector(state => state.isAuthenticate)
     const error = useSelector(state => state.error)
@@ -80,4 +80,4 @@ function SignIn() {
     }
 }
 
-export default SignIn
+export default Login

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.svg'
 import { useDispatch, useSelector } from "react-redux/es/exports"
-import { logout } from '../utils/root.reducer'
+import { logout } from '../redux/root.reducer'
 import { useNavigate } from 'react-router-dom'
 
 function Header() {
@@ -29,7 +29,7 @@ function Header() {
                 </Link>
                 {!logged ? (
                     <div>
-                        <Link className="header__nav__item" to="./sign-in">
+                        <Link className="header__nav__item" to="./login">
                             <i className="fa fa-user-circle"></i>
                             Sign In
                         </Link>

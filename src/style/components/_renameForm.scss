@@ -5,13 +5,20 @@
     .error-msg {
         margin-bottom: 1em;
     }
-    &__column {
+    &__container {
         display: flex;
         justify-content: center;
+        &--column {
+            flex-direction: column;
+            align-items: center;
+            @media screen and (min-width: 920px) {
+                flex-direction: row;
+            }
+        }
         &__wrapper {
             display: flex;
             flex: 1;
-            justify-content: flex-start;
+            justify-content: center;
             margin: 0.3em;
             &--end {
                 justify-content: flex-end;

@@ -84,19 +84,19 @@ function RenameForm({ formOpen, setFormOpen, username, setUsername }) {
                 <div className="error-msg">{validInput.invalidmsg}</div>
                 : null
             }
-            <div className="renameForm__column">
-                <div className="renameForm__column__wrapper renameForm__column__wrapper--end">
+            <div className="renameForm__container renameForm__container--column">
+                <div className="renameForm__container__wrapper renameForm__container__wrapper--end">
                     <input type="text" name="firstName" value={username.firstName} onChange={handleChange} placeholder={user.firstName} required></input>
                 </div>
-                <div className="renameForm__column__wrapper renameForm__column__wrapper--start">
+                <div className="renameForm__container__wrapper renameForm__container__wrapper--start">
                     <input type="text" name="lastName" value={username.lastName} onChange={handleChange} placeholder={user.lastName} required></input>
                 </div>
             </div>
-            <div className="renameForm__column">
-                <div className="renameForm__column__wrapper renameForm__column__wrapper--end">
+            <div className="renameForm__container">
+                <div className="renameForm__container__wrapper renameForm__container__wrapper--end">
                     <input className="button" type="submit" onClick={handleSubmit} value="Save"></input>
                 </div>
-                <div className="renameForm__column__wrapper renameForm__column__wrapper--start">
+                <div className="renameForm__container__wrapper renameForm__container__wrapper--start">
                     <input className="button" type="reset" onClick={handleReset} value="Cancel"></input>
                 </div>
             </div>
