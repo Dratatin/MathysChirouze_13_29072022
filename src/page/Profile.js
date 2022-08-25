@@ -1,11 +1,13 @@
 import AccountWrapper from "../components/AccountWrapper"
 import ProfileHeading from "../components/ProfileHeading"
 import { Navigate } from 'react-router-dom'
+import { useSelector } from "react-redux"
 
 function Profile() {
-    const logged = JSON.parse(localStorage.getItem("isAuthenticate"))
+    const logged = useSelector(state => state.isAuthenticate)
+    const token = JSON.parse(localStorage.getItem("token"))
 
-    if (!logged) {
+    if (!logged && !token) {
         return (
             <Navigate to="/" />
         )

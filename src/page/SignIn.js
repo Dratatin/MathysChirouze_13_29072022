@@ -26,12 +26,12 @@ function SignIn() {
     const handleSubmit = (e) => {
         e.preventDefault()
         const logCredentials = {
-            email: "steve@rogers.com",
-            password: "password456",
-            rememberMe: true,
-            // email: document.querySelector("#username").value,
-            // password: document.querySelector("#password").value,
-            // rememberMe: document.querySelector("#remember-me").checked
+            // email: "steve@rogers.com",
+            // password: "password456",
+            // rememberMe: false
+            email: document.querySelector("#username").value,
+            password: document.querySelector("#password").value,
+            rememberMe: document.querySelector("#remember-me").checked
         }
         authentification(store, logCredentials)
     }
@@ -49,9 +49,9 @@ function SignIn() {
                         <i className="fa fa-user-circle signIn-content__icon"></i>
                         <h1>Sign In</h1>
                         {error.status === 400 ?
-                            <span className="error-message">Mauvais identifiant ou mot de passe</span>
+                            <span className="error-msg">Mauvais identifiant ou mot de passe</span>
                             : (error.status !== null && error.status !== 400 ?
-                                <span className="error-message">Une erreur est survenue : {error.message}</span>
+                                <span className="error-mdg">Une erreur est survenue : {error.message}</span>
                                 : null
                             )
                         }

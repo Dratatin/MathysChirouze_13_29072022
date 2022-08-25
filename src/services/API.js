@@ -27,7 +27,6 @@ export const getUserProfil = (store, rememberMe) => {
         store.dispatch(authResolved(response.data.body))
         if (rememberMe === true) {
             localStorage.setItem('token', JSON.stringify(token))
-            localStorage.setItem('isAuthenticate', JSON.stringify(true))
         }
     }).catch(error => {
         store.dispatch(authRejected({
